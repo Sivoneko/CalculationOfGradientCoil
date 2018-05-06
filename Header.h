@@ -65,31 +65,31 @@ public:
 	};
 	void CalculateDlinu(const int KolVitkov, const double DiamProv, const int ShirKat, const int j)
 	{
-		double  Storona = 0.04; // в метрах
+		double  Storona = 0.04; // РІ РјРµС‚СЂР°С…
 		double DlinaVitka = 0;
-		double MinStorona = 0; // в метрах
+		double MinStorona = 0; // РІ РјРµС‚СЂР°С…
 
 		for (int i(1); i < KolVitkov; i += ShirKat)
 		{
-			MinStorona = Storona - ((i * DiamProv) / ShirKat); // Определяем внутреннюю сторону котушки
-			Storona = MinStorona; // определяем сторону котушки при i-м количество витков
-			DlinaVitka = Storona * ShirKat; // считаем начальную длину нужного провода для 1 стороны котушки (здесь ширина котушки в количестве витков)  
+			MinStorona = Storona - ((i * DiamProv) / ShirKat); // РћРїСЂРµРґРµР»СЏРµРј РІРЅСѓС‚СЂРµРЅРЅСЋСЋ СЃС‚РѕСЂРѕРЅСѓ РєРѕС‚СѓС€РєРё
+			Storona = MinStorona; // РѕРїСЂРµРґРµР»СЏРµРј СЃС‚РѕСЂРѕРЅСѓ РєРѕС‚СѓС€РєРё РїСЂРё i-Рј РєРѕР»РёС‡РµСЃС‚РІРѕ РІРёС‚РєРѕРІ
+			DlinaVitka = Storona * ShirKat; // СЃС‡РёС‚Р°РµРј РЅР°С‡Р°Р»СЊРЅСѓСЋ РґР»РёРЅСѓ РЅСѓР¶РЅРѕРіРѕ РїСЂРѕРІРѕРґР° РґР»СЏ 1 СЃС‚РѕСЂРѕРЅС‹ РєРѕС‚СѓС€РєРё (Р·РґРµСЃСЊ С€РёСЂРёРЅР° РєРѕС‚СѓС€РєРё РІ РєРѕР»РёС‡РµСЃС‚РІРµ РІРёС‚РєРѕРІ)  
 
 			if (MinStorona > 0)
 			{
-				Vitki[j].push_back(i); // просто записываем  витки, при которых возможно смотать котушку
+				Vitki[j].push_back(i); // РїСЂРѕСЃС‚Рѕ Р·Р°РїРёСЃС‹РІР°РµРј  РІРёС‚РєРё, РїСЂРё РєРѕС‚РѕСЂС‹С… РІРѕР·РјРѕР¶РЅРѕ СЃРјРѕС‚Р°С‚СЊ РєРѕС‚СѓС€РєСѓ
 
 				for (double j(0); j < (i / ShirKat); j++)
 				{
-					Storona += (DiamProv * 2);  // узнаем на сколько увеличится сторона котушки для каждого нового слоя
-					DlinaVitka += 4 * ShirKat * Storona; // также узнаем длину витка уже полностью готовой котушки
+					Storona += (DiamProv * 2);  // СѓР·РЅР°РµРј РЅР° СЃРєРѕР»СЊРєРѕ СѓРІРµР»РёС‡РёС‚СЃСЏ СЃС‚РѕСЂРѕРЅР° РєРѕС‚СѓС€РєРё РґР»СЏ РєР°Р¶РґРѕРіРѕ РЅРѕРІРѕРіРѕ СЃР»РѕСЏ
+					DlinaVitka += 4 * ShirKat * Storona; // С‚Р°РєР¶Рµ СѓР·РЅР°РµРј РґР»РёРЅСѓ РІРёС‚РєР° СѓР¶Рµ РїРѕР»РЅРѕСЃС‚СЊСЋ РіРѕС‚РѕРІРѕР№ РєРѕС‚СѓС€РєРё
 				}
 				double Sech = 0.785 * DiamProv * DiamProv;
 				double Ind = 0.018 * KolVitkov * KolVitkov * (Sech / DlinaVitka) * 1000;
 				Induction[j].push_back(Ind);
-				Rad[j].push_back(Storona);  // записываем сторону котушки 
+				Rad[j].push_back(Storona);  // Р·Р°РїРёСЃС‹РІР°РµРј СЃС‚РѕСЂРѕРЅСѓ РєРѕС‚СѓС€РєРё 
 				RadMin[j].push_back(MinStorona);
-				DlinaProvoda[j].push_back(DlinaVitka); // записываем  длину провода	
+				DlinaProvoda[j].push_back(DlinaVitka); // Р·Р°РїРёСЃС‹РІР°РµРј  РґР»РёРЅСѓ РїСЂРѕРІРѕРґР°	
 				Storona = 0.04;
 			}
 		}
@@ -100,7 +100,7 @@ public:
 		double opir;
 		for (unsigned i(0); i < DlinaProvoda[j].size(); i++)
 		{
-			opir = (0.018 * DlinaProvoda[j][i]) / Sech; // 0.018 питома провідність 
+			opir = (0.018 * DlinaProvoda[j][i]) / Sech; // 0.018 РїРёС‚РѕРјР° РїСЂРѕРІС–РґРЅС–СЃС‚СЊ 
 			Opir[j].push_back(opir);
 		}
 
@@ -238,14 +238,14 @@ public:
 
 	friend istream& operator>>(istream& is, Count& vvod)
 	{
-		cout << "Введите количесвто витков: ";
+		cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃРІС‚Рѕ РІРёС‚РєРѕРІ: ";
 		is >> vvod.KolVitkov;
-		cout << "Введи ширину котушки (в количестве витков): ";
+		cout << "Р’РІРµРґРё С€РёСЂРёРЅСѓ РєРѕС‚СѓС€РєРё (РІ РєРѕР»РёС‡РµСЃС‚РІРµ РІРёС‚РєРѕРІ): ";
 		is >> vvod.ShirKat;
 
 		for (int i(0); i < vvod.numberDiam; i++)
 		{
-			cout << "Введите диаметр провода: ";
+			cout << "Р’РІРµРґРёС‚Рµ РґРёР°РјРµС‚СЂ РїСЂРѕРІРѕРґР°: ";
 			is >> vvod.DiamProv[i];
 			vvod.sech[i] = 0.785 * (1000000 * vvod.DiamProv[i] * vvod.DiamProv[i]);
 		}
@@ -266,22 +266,22 @@ public:
 	{
 		for (int i(0); i < vivod.numberDiam; i++)
 		{
-			os << "********************************* Сечение" << vivod.sech[i] << " *********************************" << endl;
+			os << "********************************* РЎРµС‡РµРЅРёРµ" << vivod.sech[i] << " *********************************" << endl;
 			if (vivod.answerOut == 'y')
 			{
 				for (unsigned j(0); j < vivod.Good[i].size(); j++)
 				{
 					int k = vivod.GetGood()[i][j];
-					os << "Витки: " << vivod.GetVitki()[i][k] << "  \tСопротивление: : " << vivod.GetOpir()[i][k] << " \tДлина: " << vivod.GetDlina()[i][k] << " \tТок: " <<
-						vivod.GetStrum()[i][k] << " \tВыделение тепла: " << vivod.GetPot()[i][k] << " \tРассеивание тепла: " << vivod.GetRoss()[i][k] << "\t Каркас: " << vivod.GetRadMin()[i][k] << endl;
+					os << "Р’РёС‚РєРё: " << vivod.GetVitki()[i][k] << "  \tРЎРѕРїСЂРѕС‚РёРІР»РµРЅРёРµ: : " << vivod.GetOpir()[i][k] << " \tР”Р»РёРЅР°: " << vivod.GetDlina()[i][k] << " \tРўРѕРє: " <<
+						vivod.GetStrum()[i][k] << " \tР’С‹РґРµР»РµРЅРёРµ С‚РµРїР»Р°: " << vivod.GetPot()[i][k] << " \tР Р°СЃСЃРµРёРІР°РЅРёРµ С‚РµРїР»Р°: " << vivod.GetRoss()[i][k] << "\t РљР°СЂРєР°СЃ: " << vivod.GetRadMin()[i][k] << endl;
 				}
 			}
 			else if (vivod.answerOut == 'n')
 			{
 				for (unsigned j(0); j < vivod.DlinaProvoda[i].size(); j++)
 				{
-					os << "Витки: " << vivod.GetVitki()[i][j] << "  \tСопротивление: " << vivod.GetOpir()[i][j] << " \tДлина: " << vivod.GetDlina()[i][j] << " \tТок: " <<
-						vivod.GetStrum()[i][j] << " \tВыделение тепла: " << vivod.GetPot()[i][j] << " \tРассеивание тепла: " << vivod.GetRoss()[i][j] << "\t Каркас: " << vivod.GetRadMin()[i][j] << endl;
+					os << "Р’РёС‚РєРё: " << vivod.GetVitki()[i][j] << "  \tРЎРѕРїСЂРѕС‚РёРІР»РµРЅРёРµ: " << vivod.GetOpir()[i][j] << " \tР”Р»РёРЅР°: " << vivod.GetDlina()[i][j] << " \tРўРѕРє: " <<
+						vivod.GetStrum()[i][j] << " \tР’С‹РґРµР»РµРЅРёРµ С‚РµРїР»Р°: " << vivod.GetPot()[i][j] << " \tР Р°СЃСЃРµРёРІР°РЅРёРµ С‚РµРїР»Р°: " << vivod.GetRoss()[i][j] << "\t РљР°СЂРєР°СЃ: " << vivod.GetRadMin()[i][j] << endl;
 				}
 			}
 			os << endl;
@@ -305,7 +305,7 @@ public:
 	CheckClass(int number) :Count(number) { NewGood = new vector<int>[number]; }
 	void NewCheck(double raznica = 0, double strum1 = 1, double strum2 = 10)
 	{
-		int k;  // для получения индексов результатов, которые прошли основную сортировку
+		int k;  // РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РёРЅРґРµРєСЃРѕРІ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ РїСЂРѕС€Р»Рё РѕСЃРЅРѕРІРЅСѓСЋ СЃРѕСЂС‚РёСЂРѕРІРєСѓ
 		for (int i(0); i < numberDiam; i++)
 		{
 			for (unsigned j(0); j < Good[i].size(); j++)
@@ -340,27 +340,27 @@ public:
 	friend istream& operator>>(istream& is, CheckClass* vvod)
 	{
 		int KolVit;
-		cout << "Введите количество витков: ";
+		cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРёС‚РєРѕРІ: ";
 		is >> KolVit;
 
-		int NumberForAll; // количество вариантов сечения сразу для всех вариантов ширины котушки
-		double* DiamProvoda = NULL; // чтобы сразу применить для всех вариантов сечения провода
+		int NumberForAll; // РєРѕР»РёС‡РµСЃС‚РІРѕ РІР°СЂРёР°РЅС‚РѕРІ СЃРµС‡РµРЅРёСЏ СЃСЂР°Р·Сѓ РґР»СЏ РІСЃРµС… РІР°СЂРёР°РЅС‚РѕРІ С€РёСЂРёРЅС‹ РєРѕС‚СѓС€РєРё
+		double* DiamProvoda = NULL; // С‡С‚РѕР±С‹ СЃСЂР°Р·Сѓ РїСЂРёРјРµРЅРёС‚СЊ РґР»СЏ РІСЃРµС… РІР°СЂРёР°РЅС‚РѕРІ СЃРµС‡РµРЅРёСЏ РїСЂРѕРІРѕРґР°
 		char TheSameForAll = 'n';
-		//вводим данные для расчетов для всех вариантов ширины котушки
+		//РІРІРѕРґРёРј РґР°РЅРЅС‹Рµ РґР»СЏ СЂР°СЃС‡РµС‚РѕРІ РґР»СЏ РІСЃРµС… РІР°СЂРёР°РЅС‚РѕРІ С€РёСЂРёРЅС‹ РєРѕС‚СѓС€РєРё
 		if (vvod->KolShirini > 1)
 		{
-			cout << "Просчитать для всех вариантов ширины  с одинаковыми параметрами? y/n: ";
+			cout << "РџСЂРѕСЃС‡РёС‚Р°С‚СЊ РґР»СЏ РІСЃРµС… РІР°СЂРёР°РЅС‚РѕРІ С€РёСЂРёРЅС‹  СЃ РѕРґРёРЅР°РєРѕРІС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё? y/n: ";
 			cin >> TheSameForAll;
 
 			if (TheSameForAll == 'y')
 			{
-				cout << "Введите кличество вариантов сечения провода: ";
+				cout << "Р’РІРµРґРёС‚Рµ РєР»РёС‡РµСЃС‚РІРѕ РІР°СЂРёР°РЅС‚РѕРІ СЃРµС‡РµРЅРёСЏ РїСЂРѕРІРѕРґР°: ";
 				is >> NumberForAll;
 				DiamProvoda = new double[NumberForAll];
 
 				for (int i(0); i < NumberForAll; i++)
 				{
-					cout << "Введите диаметр провода: ";
+					cout << "Р’РІРµРґРёС‚Рµ РґРёР°РјРµС‚СЂ РїСЂРѕРІРѕРґР°: ";
 					is >> DiamProvoda[i];
 				}
 			}
@@ -368,24 +368,24 @@ public:
 
 		double strum1, strum2, raznica;
 		system("cls");
-		cout << "Введите параметры сортировки: " << endl;
-		cout << "Начальное значение тока: ";
+		cout << "Р’РІРµРґРёС‚Рµ РїР°СЂР°РјРµС‚СЂС‹ СЃРѕСЂС‚РёСЂРѕРІРєРё: " << endl;
+		cout << "РќР°С‡Р°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ С‚РѕРєР°: ";
 		cin >> strum1;
-		cout << "Окончательное значение тока: ";
+		cout << "РћРєРѕРЅС‡Р°С‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ С‚РѕРєР°: ";
 		cin >> strum2;
-		cout << "Введите разниу мощности рассеивания и мощности выделения тепла: ";
+		cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РЅРёСѓ РјРѕС‰РЅРѕСЃС‚Рё СЂР°СЃСЃРµРёРІР°РЅРёСЏ Рё РјРѕС‰РЅРѕСЃС‚Рё РІС‹РґРµР»РµРЅРёСЏ С‚РµРїР»Р°: ";
 		cin >> raznica;
 
 
-		//Для каждого варианта ширины просчитаем всё
+		//Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РІР°СЂРёР°РЅС‚Р° С€РёСЂРёРЅС‹ РїСЂРѕСЃС‡РёС‚Р°РµРј РІСЃС‘
 		for (int k(0); k < vvod->KolShirini; k++)
 		{
 			vvod[k].KolVitkov = KolVit;
-			cout << "Введите ширину катушки (в количестве витков): ";
+			cout << "Р’РІРµРґРёС‚Рµ С€РёСЂРёРЅСѓ РєР°С‚СѓС€РєРё (РІ РєРѕР»РёС‡РµСЃС‚РІРµ РІРёС‚РєРѕРІ): ";
 			is >> vvod[k].ShirKat;
 
 			int number;
-			//Вводим количество вариантов сечения
+			//Р’РІРѕРґРёРј РєРѕР»РёС‡РµСЃС‚РІРѕ РІР°СЂРёР°РЅС‚РѕРІ СЃРµС‡РµРЅРёСЏ
 			if (TheSameForAll == 'y')
 			{
 				vvod[k].numberDiam = NumberForAll;
@@ -393,13 +393,13 @@ public:
 			}
 			else
 			{
-				cout << "Введите кличество вариантов сечения провода: ";
+				cout << "Р’РІРµРґРёС‚Рµ РєР»РёС‡РµСЃС‚РІРѕ РІР°СЂРёР°РЅС‚РѕРІ СЃРµС‡РµРЅРёСЏ РїСЂРѕРІРѕРґР°: ";
 				is >> vvod[k].numberDiam;
 
 				number = vvod[k].numberDiam;
 			}
 
-			//поскольку у нас несколько обьектов, то так удобнее выделть память
+			//РїРѕСЃРєРѕР»СЊРєСѓ Сѓ РЅР°СЃ РЅРµСЃРєРѕР»СЊРєРѕ РѕР±СЊРµРєС‚РѕРІ, С‚Рѕ С‚Р°Рє СѓРґРѕР±РЅРµРµ РІС‹РґРµР»С‚СЊ РїР°РјСЏС‚СЊ
 			vvod[k].DiamProv = new double[number];
 			vvod[k].sech = new double[number];
 			vvod[k].Vitki = new vector<int>[number];
@@ -418,7 +418,7 @@ public:
 			system("cls");
 
 
-			//Вводим диаметр провода
+			//Р’РІРѕРґРёРј РґРёР°РјРµС‚СЂ РїСЂРѕРІРѕРґР°
 			for (int i(0); i < vvod[k].numberDiam; i++)
 			{
 				if (TheSameForAll == 'y')
@@ -427,15 +427,15 @@ public:
 				}
 				else
 				{
-					cout << "Введите диаметр провода: ";
+					cout << "Р’РІРµРґРёС‚Рµ РґРёР°РјРµС‚СЂ РїСЂРѕРІРѕРґР°: ";
 					is >> vvod[k].DiamProv[i];
 				}
 
 				vvod[k].sech[i] = 1000000 * (0.785 * vvod[k].DiamProv[i] * vvod[k].DiamProv[i]);
 			}
 
-			//проводим все расчеты
-			vvod[k].answerOut = 'n'; // для того, чтобы изначально выводило неотсортированные
+			//РїСЂРѕРІРѕРґРёРј РІСЃРµ СЂР°СЃС‡РµС‚С‹
+			vvod[k].answerOut = 'n'; // РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РёР·РЅР°С‡Р°Р»СЊРЅРѕ РІС‹РІРѕРґРёР»Рѕ РЅРµРѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ
 			for (int i(0); i < vvod[k].numberDiam; i++)
 			{
 				vvod[k].CalculateDlinu(vvod->KolVitkov, vvod[k].DiamProv[i], vvod[k].ShirKat, i);
@@ -447,7 +447,7 @@ public:
 				vvod[k].CalculateRoss(i);
 				vvod[k].Check(i);
 			}
-			//сортируем
+			//СЃРѕСЂС‚РёСЂСѓРµРј
 			vvod[k].NewCheck(raznica, strum1, strum2);
 		}
 		return is;
@@ -456,14 +456,14 @@ public:
 	{
 		for (int i(0); i < vivod.numberDiam; i++)
 		{
-			os << "********************************* Сечение: " << vivod.sech[i] << " *********************************" << endl;
+			os << "********************************* РЎРµС‡РµРЅРёРµ: " << vivod.sech[i] << " *********************************" << endl;
 			if (vivod.answerOut == 'y')
 			{
 				for (unsigned j(0); j < vivod.NewGood[i].size(); j++)
 				{
 					int k = vivod.GetNewGood()[i][j];
-					os << "N: " << vivod.GetVitki()[i][k] << " \tR, Ом: " << vivod.GetOpir()[i][k] << " \tl,м: " << vivod.GetDlina()[i][k] << " \tI,А: " <<
-						vivod.GetStrum()[i][k] << " \tP,Вт: " << vivod.GetPot()[i][k] << "\tQ,Вт: " << vivod.GetRoss()[i][k] << " \t Ind,мГн: " << vivod.GetInducyion()[i][k] << "\tКаркас,м: " << vivod.GetRadMin()[i][k] << "\t Макс сторона,м: " << vivod.GetRad()[i][k] << endl;
+					os << "N: " << vivod.GetVitki()[i][k] << " \tR, РћРј: " << vivod.GetOpir()[i][k] << " \tl,Рј: " << vivod.GetDlina()[i][k] << " \tI,Рђ: " <<
+						vivod.GetStrum()[i][k] << " \tP,Р’С‚: " << vivod.GetPot()[i][k] << "\tQ,Р’С‚: " << vivod.GetRoss()[i][k] << " \t Ind,РјР“РЅ: " << vivod.GetInducyion()[i][k] << "\tРљР°СЂРєР°СЃ,Рј: " << vivod.GetRadMin()[i][k] << "\t РњР°РєСЃ СЃС‚РѕСЂРѕРЅР°,Рј: " << vivod.GetRad()[i][k] << endl;
 				}
 			}
 			else if (vivod.answerOut == 'n')
@@ -471,8 +471,8 @@ public:
 				for (unsigned j(0); j < vivod.Good[i].size(); j++)
 				{
 					int k = vivod.Good[i][j];
-					os << "N: " << vivod.GetVitki()[i][k] << " \tR, Ом: " << vivod.GetOpir()[i][k] << " \tl,м: " << vivod.GetDlina()[i][k] << " \tI,А: " <<
-						vivod.GetStrum()[i][k] << " \tP,Вт: " << vivod.GetPot()[i][k] << "\tQ,Вт: " << vivod.GetRoss()[i][k] << " \t Ind,мГн: " << vivod.GetInducyion()[i][k] << "\tКаркас,м: " << vivod.GetRadMin()[i][k] << "\t Макс сторона,м: " << vivod.GetRad()[i][k] << endl;
+					os << "N: " << vivod.GetVitki()[i][k] << " \tR, РћРј: " << vivod.GetOpir()[i][k] << " \tl,Рј: " << vivod.GetDlina()[i][k] << " \tI,Рђ: " <<
+						vivod.GetStrum()[i][k] << " \tP,Р’С‚: " << vivod.GetPot()[i][k] << "\tQ,Р’С‚: " << vivod.GetRoss()[i][k] << " \t Ind,РјР“РЅ: " << vivod.GetInducyion()[i][k] << "\tРљР°СЂРєР°СЃ,Рј: " << vivod.GetRadMin()[i][k] << "\t РњР°РєСЃ СЃС‚РѕСЂРѕРЅР°,Рј: " << vivod.GetRad()[i][k] << endl;
 				}
 			}
 			os << endl;
